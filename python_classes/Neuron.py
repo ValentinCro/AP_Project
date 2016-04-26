@@ -5,9 +5,13 @@ RECOMPENSE = 8
 
 class NeuronNetwork:
     def __init__(self,maxDist,nbSticks):
+        #On initialise un tableau vide
         self.neurons = []
+        #On boucle de 1 au nombre de baton + 1
         for i in range(1,nbSticks+1):
+            #On ajoute un neuron dans le tableau précédent
             self.neurons.append(Neuron(self,i))
+        #On parcours tous les neurons du tableau
         for neuron in self.neurons:
             neuron.makeConnections(maxDist,nbSticks,BASE_WEIGHT)
         self.initPath()
@@ -39,8 +43,10 @@ class Neuron:
         self.index = index
         self.connections = {}
     def makeConnections(self,maxDist,nbSticks,baseWeight):
+        #Si l'index est différent du nombre de baton
         if self.index!=nbSticks: nb=maxDist*2 +1
         else: nb=maxDist +1
+        #On boucle de 1 à nb
         for i in range(1,nb):
             neuron = self.network.getNeuron(self.index-i)
             if neuron!=None: self.connections[neuron]=baseWeight
