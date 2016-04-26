@@ -36,10 +36,12 @@ class CPUPlayer(Player):
         self.previousNeuron = None
     def play(self,sticks):
         if self.mode=='easy': return self.playEasy(sticks)
+        elif self.mode=='medium': return self.playMedium(sticks)
         elif self.mode=='hard': return self.playHard(sticks)
         else: return self.playMedium(sticks)
     def playMedium(self,sticks):
         # TODO compléter ici avec les quelques conditions pour éviter de faire une grosse erreur aux derniers tours
+        if sticks<=4 and sticks > 1 : return sticks-1
         return self.playRandom(sticks)
     def playEasy(self,sticks):
         return self.playRandom(sticks)
