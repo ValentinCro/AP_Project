@@ -1,11 +1,10 @@
-#LE main
+# Script main permettant de lancer le jeu.
 
-from Game import *
-from Player import *
+from python_classes.Game import Game
+from python_classes.Player import *
 
 nbSticks = 15
 
-vous = HumanPlayer("Le plus beau")
-ordi = CPUPlayer("Le mechant ordi", "medium", nbSticks)
-game = Game(nbSticks)
-game.start(vous, ordi, True)
+human = HumanPlayer("Humain")
+cpu = CPUPlayer("CPU", "medium", nbSticks)
+Game(nbSticks).start(human, cpu, True)
