@@ -1,10 +1,10 @@
 # Script main permettant de lancer le jeu.
 
-from python_classes.Game import Game
-from python_classes.Player import *
+from Game import Game
+from Player import *
 
-nbSticks = 15
+NB_STICKS = 15
 
 human = HumanPlayer("Humain")
-cpu = CPUPlayer("CPU", "medium", nbSticks)
-Game(nbSticks).start(human, cpu, True)
+cpu = CPUPlayer("CPU", "medium", NB_STICKS)
+Game(NB_STICKS).start(human, cpu, True)
