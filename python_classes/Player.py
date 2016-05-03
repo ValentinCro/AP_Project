@@ -104,14 +104,13 @@ class CPUPlayer(Player):
             self.previousNeuron = self.netw.getNeuron(sticks)
             shift = 0
         elif sticks == 1 :
-            sticksReturned = 1
+            return sticks
         else : 
             shift = self.previousNeuron.index - sticks
         tmpNeuron = self.previousNeuron.chooseConnectedNeuron(shift)
         self.netw.activateNeuronPath(self.previousNeuron, tmpNeuron)
         self.previousNeuron = tmpNeuron
-        sticksReturned = sticks - self.previousNeuron.index
-        return playMedium(sticksReturned)
+        return sticks - self.previousNeuron.index
         
     # La méthode getNeuronNetwork permet de retourner le réseau de neurones de 
     # l'intelligence artificielle.

@@ -108,7 +108,15 @@ class Neuron:
     def chooseConnectedNeuron(self,shift):
         neuron = None
         # TODO méthode qui retourne un neurone connecté au neurone actuel en fonction du 'shift' (cf. CPUPlayer).
-        # On devra utiliser la méthode self.weighted_choice pour choisir au hasard dans une liste de connexions disponibles en fonction de leurs poids
+        # On devra utiliser la méthode self.weighted_choice pour choisir au hasard dans une liste de connexions 
+        # disponibles en fonction de leurs poids
+        connectionsCopy = dict(self.connections)
+        neuron = self.weighted_choice(connectionsCopy)
+        
+        while not neuron.testNeuron(self.index - shift):
+            del connectionsCopy[neuron]
+            neuron = self.weighted_choice(connectionsCopy)
+        
         return neuron
 
     def testNeuron(self,inValue):
