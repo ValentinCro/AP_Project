@@ -124,6 +124,7 @@ class Neuron:
 
     def recompenseConnection(self,neuron):
         # TODO récompenser la connexion entre le neurone actuel et 'neuron'
+        self.connections[neuron] = self.connections[neuron] + RECOMPENSE
         pass
 
     def printConnections(self):

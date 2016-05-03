@@ -5,6 +5,9 @@ from Player import *
 
 NB_STICKS = 15
 
-human = HumanPlayer("Humain")
-cpu = CPUPlayer("CPU", "hard", NB_STICKS)
-Game(NB_STICKS).start(human, cpu, True)
+cpu1 = CPUPlayer("CPU_HUGE_LARGE_DICK", "hard", NB_STICKS)
+cpu2 = CPUPlayer("CPU_LITTLE_DICK", "hard", NB_STICKS)
+for i in range(1, 5001):
+    Game(NB_STICKS).start(cpu1, cpu2, False)
+
+cpu1.getNeuronNetwork().printAllConnections()
