@@ -99,7 +99,19 @@ class CPUPlayer(Player):
         # utiliser la méthode 'chooseConnectedNeuron' du self.previousNeuron puis retourner le nombre de bâtons à jouer
         # bien activer le réseau de neurones avec la méthode 'activateNeuronPath' après avoir choisi un neurone cible
         # attention à gérer les cas particuliers (premier tour ou sticks==1)
-        return playMedium(sticks)
+        sticksReturned = 0
+        if self.previousNeuron == None :
+            self.previousNeuron = self.netw.getNeuron(sticks)
+            shift = 0
+        elif sticks == 1 :
+            sticksReturned = 1
+        else : 
+            shift = self.previousNeuron.index - sticks
+        tmpNeuron = self.previousNeuron.chooseConnectedNeuron(shift)
+        self.netw.activateNeuronPath(self.previousNeuron, tmpNeuron)
+        self.previousNeuron = tmpNeuron
+        sticksReturned = sticks - self.previousNeuron.index
+        return playMedium(sticksReturned)
         
     # La méthode getNeuronNetwork permet de retourner le réseau de neurones de 
     # l'intelligence artificielle.
