@@ -100,7 +100,7 @@ class CPUPlayer(Player):
         # bien activer le réseau de neurones avec la méthode 'activateNeuronPath' après avoir choisi un neurone cible
         # attention à gérer les cas particuliers (premier tour ou sticks==1)
         sticksReturned = 0
-        if self.previousNeuron == None :
+        if self.previousNeuron == None:
             self.previousNeuron = self.netw.getNeuron(sticks)
             shift = 0
         elif sticks == 1 :
