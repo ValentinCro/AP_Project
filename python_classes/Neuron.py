@@ -104,12 +104,9 @@ class Neuron:
             # Si neuron n'est pas nul, alors on initialise le poids du neurone 
             # à baseWeight
             if neuron != None: self.connections[neuron] = baseWeight
-            
+        
     def chooseConnectedNeuron(self,shift):
         neuron = None
-        # TODO méthode qui retourne un neurone connecté au neurone actuel en fonction du 'shift' (cf. CPUPlayer).
-        # On devra utiliser la méthode self.weighted_choice pour choisir au hasard dans une liste de connexions 
-        # disponibles en fonction de leurs poids
         connectionsCopy = dict(self.connections)
         neuron = self.weighted_choice(connectionsCopy)
         
@@ -122,19 +119,25 @@ class Neuron:
     def testNeuron(self,inValue):
         return inValue - self.index <= 3 and inValue - self.index >= 1
 
+    # La méthode recompenseConnections permet d'ajouter du poids à une 
+    # connection si celle-ci permet la victoire.
     def recompenseConnection(self,neuron):
-        # TODO récompenser la connexion entre le neurone actuel et 'neuron'
         self.connections[neuron] = self.connections[neuron] + RECOMPENSE
-        pass
 
+    # La méthode printConnections permet d'afficher les connections entre les 
+    # neuronnes.
     def printConnections(self):
         print("Connections of ", self.asString() + ":")
         for neuron in self.connections:
             print(neuron.asString(),self.connections[neuron])
 
+    # La méthode asString permet de retourner l'objet sous forme de chaine de 
+    # caractères.
     def asString(self):
         return "N"+str(self.index)
 
+    # La méthode weighted_choice permet à l'intelligence artificielle de faire 
+    # ses choix en fonctions des connections de poids fort.
     def weighted_choice(self,connections):
        total = sum(w for c, w in connections.items())
        r = random.uniform(0, total)

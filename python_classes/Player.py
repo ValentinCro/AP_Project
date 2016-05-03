@@ -57,10 +57,13 @@ class CPUPlayer(Player):
     # l'intelligence artificielle et le nombre de sticks permettant à 
     # l'algorithme hard d'effectuer les traitements nécessaire dans le réseau 
     # de neurone.
-    def __init__(self,name,mode,nbSticks):
+    def __init__(self, name, mode, nbSticks, netw = None):
         super().__init__(name)
         self.mode = mode
-        self.netw = NeuronNetwork(3,nbSticks)
+        if netw is None:
+            self.netw = NeuronNetwork(3,nbSticks)
+        else:
+            self.netw = netw
         self.previousNeuron = None
         
     # La méthode play permet au joueur informatique de jouer en fonction de 
@@ -76,7 +79,6 @@ class CPUPlayer(Player):
     # en cas de victoire possible où là un petit algorithme prend le relai pour 
     # augmenter les chances de victoire de l'ordinateur.
     def playMedium(self,sticks):
-        # TODO compléter ici avec les quelques conditions pour éviter de faire une grosse erreur aux derniers tours
         if sticks<=4 and sticks > 1 : return sticks-1
         return self.playRandom(sticks)
         
@@ -93,18 +95,11 @@ class CPUPlayer(Player):
     # La méthode playHard permet de retourner un entier entre 1 et 3 
     # avec toute une intelligence artificielle derrière le choix de cet entier.
     def playHard(self,sticks):
-        # TODO utiliser le réseau neuronal pour choisir le nombre de bâtons à jouer
-        # utiliser l'attribut self.previousNeuron pour avoir le neuron précédemment sollicité dans la partie
-        # calculer un 'shift' qui correspond à la différence entre la valeur du précédent neurone et le nombre de bâtons encore en jeu
-        # utiliser la méthode 'chooseConnectedNeuron' du self.previousNeuron puis retourner le nombre de bâtons à jouer
-        # bien activer le réseau de neurones avec la méthode 'activateNeuronPath' après avoir choisi un neurone cible
-        # attention à gérer les cas particuliers (premier tour ou sticks==1)
         sticksReturned = 0
         if self.previousNeuron == None:
             self.previousNeuron = self.netw.getNeuron(sticks)
             shift = 0
-        elif sticks == 1 :
-            return sticks
+        elif sticks == 1 : return sticks
         else : 
             shift = self.previousNeuron.index - sticks
         tmpNeuron = self.previousNeuron.chooseConnectedNeuron(shift)
@@ -115,6 +110,10 @@ class CPUPlayer(Player):
     # La méthode getNeuronNetwork permet de retourner le réseau de neurones de 
     # l'intelligence artificielle.
     def getNeuronNetwork(self): return self.netw
+    
+    # La méthode setNeuronNetwork permet d'instancier le réseau de neurones de
+    # l'intelligence artificielle.
+    def setNeuronNetwork(self,ns): self.netw = ns
     
     # La méthode addWin permet d'incrémenter le nombre de victoire du joueur.
     # Elle permet également de réinitialiser l'état de l'intelligence.

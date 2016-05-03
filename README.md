@@ -43,3 +43,10 @@ après plusieurs victoires et termine avec un ratio de 80% de victoires.
 un ratio de 90% de victoires.
 * En mode `medium` contre `medium`, c'est un ratio de 50/50.
 
+### Partie 9 : Jeu final
+
+C'est impossible de gagner car l'ordinateur connait maintenant le chemin
+menant à la victoire. Dès que l'on tire des batons, il a un coup d'avance sur 
+nous et jouera toujours de façon à laisser 4 + 1 batons, ce qui nous cause une 
+cuisante défaite à tous les coups.
+

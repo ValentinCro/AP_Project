@@ -2,15 +2,26 @@
 
 from Game import Game
 from Player import *
-from pickle import *
+import pickle
+import os.path
 
 NB_STICKS = 15
 
-cpu1 = CPUPlayer("CPU_1", "hard", NB_STICKS)
-cpu2 = CPUPlayer("CPU_2", "hard", NB_STICKS)
-for i in range(1, 5001):
-    Game(NB_STICKS).start(cpu1, cpu2, False)
-    Game(NB_STICKS).start(cpu2, cpu1, False)
-    
+# Permet de charger le NeuronNetwork
+if os.path.isfile('data') :
+    with open('data', 'rb') as inp: network = pickle.load(inp)
+    netw = network
 
-with open("data",'wb') as output: dump(cpu1.getNeuronNetwork(), output, HIGHEST_PROTOCOL)
+humanName = input('Quel est votre nom ? ')
+human = HumanPlayer(humanName)
+
+difficulty = ''
+while difficulty != 'easy' and difficulty != 'medium' and difficulty != 'hard' :
+    difficulty = input('Quel niveau de difficulté ? (easy, medium, hard) ')
+cpu1 = CPUPlayer("Ordinateur", difficulty, NB_STICKS, netw)
+
+if(difficulty == "hard"):
+	with open('data', 'rb') as inp: ns = pickle.load(inp)
+	cpu1.setNeuronNetwork(ns)
+
+Game(NB_STICKS).start(cpu1, human, True)
