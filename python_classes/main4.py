@@ -12,4 +12,5 @@ for i in range(1, 5001):
     Game(NB_STICKS).start(cpu1, cpu2, False)
     Game(NB_STICKS).start(cpu2, cpu1, False)
     
+
 with open("data",'wb') as output: dump(cpu1.getNeuronNetwork(), output, HIGHEST_PROTOCOL)
