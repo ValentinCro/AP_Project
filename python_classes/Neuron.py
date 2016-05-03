@@ -30,6 +30,8 @@ class NeuronNetwork:
             
         self.initPath()
 
+    # La méthode initPath permet de créer le gestionnaire de chemins entre les 
+    # neuronnes.
     def initPath(self):
         self.path = {}
 
@@ -44,17 +46,24 @@ class NeuronNetwork:
         else: 
             return None
 
+    # La méthode activateNeuronPath permet de lier un neuronne avec un autre 
+    # grâce au gestionnaire de chemins entre les neuronnes.
     def activateNeuronPath(self,neuron1,neuron2):
         self.path[neuron1]=neuron2
 
+    # La méthode recompenseConnections permet de récompenser les connections de 
+    # neuronnes qui permettent la victoire.
     def recompenseConnections(self):
         for neuron1,neuron2 in self.path.items():
             neuron1.recompenseConnection(neuron2)
+        # On réinitialise le gestionnaire de chemins.
         self.initPath()
 
+    # La méthode printAllConnections permet d'afficher toutes les connections.
     def printAllConnections(self):
-        for neuron in self.neurons: neuron.printConnections()
+        for neuron in self.neurons: neuron.printConnections() 
 
+    # La méthode printScores permet d'afficher le score des neuronnes.
     def printScores(self):
         scores = {}
         for neuron in self.neurons:
@@ -62,7 +71,7 @@ class NeuronNetwork:
                 if n not in scores: scores[n]=s
                 else: scores[n] = scores[n] + s
         for neuron,score in scores.items():
-            print(neuron.asString(),score)
+            print(neuron.asString(), score)
 
 
 # La classe Neuron représente un neurone. Cet objet contient le réseau neuronal,
@@ -95,7 +104,7 @@ class Neuron:
             # Si neuron n'est pas nul, alors on initialise le poids du neurone 
             # à baseWeight
             if neuron != None: self.connections[neuron] = baseWeight
-
+            
     def chooseConnectedNeuron(self,shift):
         neuron = None
         # TODO méthode qui retourne un neurone connecté au neurone actuel en fonction du 'shift' (cf. CPUPlayer).
@@ -110,7 +119,7 @@ class Neuron:
         pass
 
     def printConnections(self):
-        print("Connections of",self.asString()+":")
+        print("Connections of ", self.asString() + ":")
         for neuron in self.connections:
             print(neuron.asString(),self.connections[neuron])
 
