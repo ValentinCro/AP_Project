@@ -57,13 +57,10 @@ class CPUPlayer(Player):
     # l'intelligence artificielle et le nombre de sticks permettant à 
     # l'algorithme hard d'effectuer les traitements nécessaire dans le réseau 
     # de neurone.
-    def __init__(self, name, mode, nbSticks, netw = None):
+    def __init__(self, name, mode, nbSticks):
         super().__init__(name)
         self.mode = mode
-        if netw is None:
-            self.netw = NeuronNetwork(3,nbSticks)
-        else:
-            self.netw = netw
+        self.netw = NeuronNetwork(3,nbSticks)
         self.previousNeuron = None
         
     # La méthode play permet au joueur informatique de jouer en fonction de 

@@ -18,7 +18,7 @@ human = HumanPlayer(humanName)
 difficulty = ''
 while difficulty != 'easy' and difficulty != 'medium' and difficulty != 'hard' :
     difficulty = input('Quel niveau de difficulté ? (easy, medium, hard) ')
-cpu1 = CPUPlayer("Ordinateur", difficulty, NB_STICKS, netw)
+cpu1 = CPUPlayer("Ordinateur", difficulty, NB_STICKS)
 
 if(difficulty == "hard"):
 	with open('data', 'rb') as inp: ns = pickle.load(inp)
