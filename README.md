@@ -50,3 +50,10 @@ menant à la victoire. Dès que l'on tire des batons, il a un coup d'avance sur
 nous et jouera toujours de façon à laisser 4 + 1 batons, ce qui nous cause une 
 cuisante défaite à tous les coups.
 
+### Partie 10 : Evaluation
+
+Pour effectuer le calcul de taux d'erreur, nous avons mis en place un algorithme 
+qui effectue 1 000 000 parties avec toujours la même intelligence artificielle 
+qui commence. Sur ces 1 000 000 parties, l'intelligence artificielle ne gagne 
+que 823 447 parties. On aurait pu s'attendre à que des victoires de la part 
+de l'intelligence artificielle qui commence.
